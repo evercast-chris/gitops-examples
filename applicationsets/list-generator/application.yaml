@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app-of-apps-pattern
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: git@github.com:evercast-chris/gitops-examples.git
+    targetRevision: HEAD
+    path: gitops-example/applicationsets/list-generator/appset
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: bgd-application
